@@ -14,6 +14,7 @@ class Server extends EventEmitter {
     public const NEW_CLIENT = 'new_client';
     public const ERROR = 'error';
     public const READY = 'ready';
+    public const CLOSE = 'close';
 
     private SocketServer $server;
     public readonly Logger $logger;
@@ -34,12 +35,15 @@ class Server extends EventEmitter {
         $this->emit(self::READY);
     }
 
+    public function close() {
+        $this->server->close();
+    }
+
     private function setupEvents(): void {
         $this->server->on('connection', function (ConnectionInterface $connection) {
-            $client = new Client($connection);
+            $client = new Client($connection, $this);
             $this->clientPool->add($client);
             $this->emit(self::NEW_CLIENT, [$client]);
-            $this->logger->log(Level::INFO, "New client connected: {$client->getIp()}");
         });
 
         $this->server->on('error', function (Throwable $error) {
