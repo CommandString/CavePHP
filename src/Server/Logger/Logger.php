@@ -47,4 +47,21 @@ class Logger
 
         return $log;
     }
+
+    public function error(string $message, array $context = []): void
+    {
+        $this->log(Level::ERROR, $message, $context);
+    }
+    public function warning(string $message, array $context = []): void
+    {
+        $this->log(Level::WARNING, $message, $context);
+    }
+    public function info(string $message, array $context = []): void
+    {
+        $this->log(Level::INFO, $message, $context);
+    }
+    public function debug(string $message, array $context = []): void
+    {
+        $this->log(Level::DEBUG, $message, $context);
+    }
 }

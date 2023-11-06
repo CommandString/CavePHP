@@ -26,7 +26,7 @@ class LoggerTest extends TestCase
 
     public function testItFormats() {
         $output = $this->obCapture(function () {
-            $this->logger->log(Level::DEBUG, "{message}");
+            $this->logger->debug("{message}");
         });
 
         $this->assertIsInt(
