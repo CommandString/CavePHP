@@ -15,8 +15,7 @@ class Logger
             return;
         }
 
-        $makeContextString = static function (array|int $item): string
-        {
+        $makeContextString = static function (array|int $item): string {
             if (is_array($item)) {
                 return json_encode($item);
             }
@@ -30,7 +29,7 @@ class Logger
             $message .= ' |';
 
             foreach ($context as $item) {
-                $message .= " " . $makeContextString($item);
+                $message .= ' ' . $makeContextString($item);
             }
         }
 
@@ -39,9 +38,9 @@ class Logger
 
     protected function formatMessage(Level $level, string $message): string
     {
-        $log = "";
+        $log = '';
 
-        $log .= '[' .color($level->value, $level->name) . '] ';
+        $log .= '[' . color($level->value, $level->name) . '] ';
         $log .= '[' . color(Color::BROWN, date('Y-m-d H:i:s')) . ']';
         $log .= " {$message}";
 
@@ -52,14 +51,17 @@ class Logger
     {
         $this->log(Level::ERROR, $message, $context);
     }
+
     public function warning(string $message, array $context = []): void
     {
         $this->log(Level::WARNING, $message, $context);
     }
+
     public function info(string $message, array $context = []): void
     {
         $this->log(Level::INFO, $message, $context);
     }
+
     public function debug(string $message, array $context = []): void
     {
         $this->log(Level::DEBUG, $message, $context);

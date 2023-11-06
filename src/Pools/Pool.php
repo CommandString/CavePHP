@@ -5,12 +5,14 @@ namespace CavePHP\Pools;
 use CavePHP\Exceptions\CavePHPException;
 use Countable;
 
-abstract class Pool implements Countable {
+abstract class Pool implements Countable
+{
     private array $items = [];
 
     abstract public function isInstance(object $item): bool;
 
-    public function __construct(array $items = []) {
+    public function __construct(array $items = [])
+    {
         $this->fill($items);
     }
 
@@ -18,7 +20,7 @@ abstract class Pool implements Countable {
     {
         foreach ($items as $item) {
             if (!is_object($item) || !$this->isInstance($item)) {
-                throw new CavePHPException("This object is not supported by this collection");
+                throw new CavePHPException('This object is not supported by this collection');
             }
         }
 

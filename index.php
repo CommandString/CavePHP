@@ -29,7 +29,7 @@ $server->on(Server::NEW_CLIENT, function (Client $client, Server $server) {
     $client->on(Client::GENERIC_PACKET, static function (GenericPacket $packet, Client $client) {
         var_dump($packet->getType());
     });
-    
+
     $client->on(Client::DISCONNECT, static function (Client $client) {
         $client->server->logger->info('Client disconnected [' . color(Color::GREEN, $client->getIp()) . ']');
     });

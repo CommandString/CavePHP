@@ -2,10 +2,12 @@
 
 use CommandString\Utils\FileSystemUtils;
 
-function hexToAnsiColor($hexColor, $isBackground = false) {
+function hexToAnsiColor($hexColor, $isBackground = false)
+{
     $ansiCode = $isBackground ? 48 : 38;
     $hexColor = ltrim($hexColor, '#'); // Remove '#' if present
-    list($r, $g, $b) = sscanf($hexColor, "%02x%02x%02x");
+    [$r, $g, $b] = sscanf($hexColor, '%02x%02x%02x');
+
     return "\033[{$ansiCode};2;{$r};{$g};{$b}m";
 }
 

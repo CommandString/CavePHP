@@ -16,7 +16,8 @@ class PacketType
     ) {
     }
 
-    public static function getMappings(): array {
+    public static function getMappings(): array
+    {
         if (self::$maps === null) {
             self::$maps = [];
 
@@ -30,7 +31,6 @@ class PacketType
 
             loopClasses(__DIR__, static function (string $className) use ($addMap): void {
                 /** @var $className UniqPacket|string */
-
                 $reflection = new ReflectionClass($className);
 
                 if (in_array(UniqPacket::class, $reflection->getInterfaceNames())) {
@@ -42,8 +42,8 @@ class PacketType
         return self::$maps;
     }
 
-
-    public static function createFromIdAndStatus(int $id, ClientState $status): PacketType {
+    public static function createFromIdAndStatus(int $id, ClientState $status): PacketType
+    {
         foreach (self::getMappings()[$status->name] ?? [] as $packetId => $className) {
             if ($packetId === $id) {
                 return new self($packetId, $status, $className);

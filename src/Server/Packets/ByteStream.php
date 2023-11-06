@@ -15,12 +15,13 @@ class ByteStream
     public const LONG = 'l';
     public const FLOAT = 'f';
     public const DOUBLE = 'd';
-    private Bytes $data;
 
+    private Bytes $data;
     private int $position = 0;
 
-    public function __construct() {
-        $this->data = new Bytes;
+    public function __construct()
+    {
+        $this->data = new Bytes();
     }
 
     /**
@@ -34,6 +35,7 @@ class ByteStream
 
         $data = $this->data->getRange($this->position, $length);
         $this->move($length);
+
         return $data;
     }
 
@@ -94,7 +96,7 @@ class ByteStream
 
     public function readVarInt(): int
     {
-        return (new McVarInt)->read($this);
+        return (new McVarInt())->read($this);
     }
 
     /**
@@ -131,8 +133,9 @@ class ByteStream
 
     public static function createWithData(string $data): self
     {
-        $stream = new self;
+        $stream = new self();
         $stream->write($data);
+
         return $stream;
     }
 }

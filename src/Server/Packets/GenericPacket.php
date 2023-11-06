@@ -12,9 +12,8 @@ class GenericPacket
 
     public function __construct(
         public readonly Client $client
-    )
-    {
-        $this->stream = new ByteStream;
+    ) {
+        $this->stream = new ByteStream();
     }
 
     public function getLength(): int

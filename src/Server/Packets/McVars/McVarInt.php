@@ -12,7 +12,8 @@ class McVarInt implements McVar
     public const SEGMENT_BITS = 0x7F;
     public const CONTINUE_BIT = 0x80;
 
-    public function read(ByteStream $stream): int {
+    public function read(ByteStream $stream): int
+    {
         $value = 0;
         $shift = 0;
 
@@ -22,7 +23,7 @@ class McVarInt implements McVar
             $shift += 7;
 
             if ($shift >= 32) {
-                throw new CavePHPException("VarInt is too big");
+                throw new CavePHPException('VarInt is too big');
             }
         } while ($byte & self::CONTINUE_BIT);
 

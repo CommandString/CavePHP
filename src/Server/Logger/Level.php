@@ -2,9 +2,6 @@
 
 namespace CavePHP\Server\Logger;
 
-use CavePHP\Server\Logger\Color;
-use Stringable;
-
 enum Level: string
 {
     case ERROR = Color::RED_INVERTED;

@@ -11,7 +11,8 @@ class Bytes implements Countable, Stringable
 {
     private stdClass $data;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->data = new stdClass();
     }
 

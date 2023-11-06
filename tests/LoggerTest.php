@@ -2,7 +2,6 @@
 
 namespace Tnapf\Package\Test;
 
-use CavePHP\Server\Logger\Level;
 use CavePHP\Server\Logger\Logger;
 use PHPUnit\Framework\TestCase;
 
@@ -14,19 +13,21 @@ class LoggerTest extends TestCase
     {
         parent::__construct($name);
 
-        $this->logger = new Logger;
+        $this->logger = new Logger();
     }
 
     public function obCapture(callable $callback): string
     {
         ob_start();
         $callback();
+
         return trim(ob_get_clean());
     }
 
-    public function testItFormats() {
+    public function testItFormats()
+    {
         $output = $this->obCapture(function () {
-            $this->logger->debug("{message}");
+            $this->logger->debug('{message}');
         });
 
         $this->assertIsInt(
